@@ -16,12 +16,12 @@ jobs:
     - uses: actions/checkout@v3
     - name: Docker Login
       env:
-        docker_user: ${{secrets.thomasmcochrane}}
-        DOCKER_PASSWORD: ${{secrets.ujf0bzw.axk5DHA-wum}}
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: build the docker image
       run: docker build . --file Dockerfile --tag Tom/robot-shop test:$(date +%s)
 
     - name: Docker Push
-      run: docker push ${{secrets.thomasmcochrane}}/test123
+      run: docker push ${{secrets.DOCKER_USER}}/test123
